@@ -6,6 +6,9 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BrowserUtils {
 	
@@ -84,6 +87,62 @@ public class BrowserUtils {
 			e.printStackTrace();
 		}
 	}
+	 
+	/**
+	 * I create a method that it returns when Selenium can`t find any element 
+	 * it will wait for certain time for element to be visible. 
+	 * 
+	 * */
+	public static WebElement waitForVisibilty(WebElement element, int timeToWaitInSecond) {
+		
+		WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeToWaitInSecond);
+		return wait.until(ExpectedConditions.visibilityOf(element));
+		
+	}
+	
+	/**
+	 * I created this method that it returns a certain element and 
+	 * wait for that element to be visible for certain time. it uses wit locater.
+	 * */
+	public static WebElement waitForVisibilty(By locator,int timeOut) {
+		
+		WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeOut);
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		
+	}
+	
+	/**
+	 * In this method we wait for clickablity.
+	 * @param WebDriverWait
+	 * @return ExpectedConditions
+	 * */
+	
+	public static WebElement waitForClickablility(WebElement element, int timeout) {
+		
+		WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeout);
+		return wait.until(ExpectedConditions.elementToBeClickable(element));
+	
+	}
+
+	/**
+	 * In this method we wait for clickablity.
+	 * @param WebDriverWait
+	 * @return ExpectedConditions
+	 * */
+
+	public static WebElement waitForClickablility(By locator, int timeout) {
+		WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeout);
+		return wait.until(ExpectedConditions.elementToBeClickable(locator));
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 }
