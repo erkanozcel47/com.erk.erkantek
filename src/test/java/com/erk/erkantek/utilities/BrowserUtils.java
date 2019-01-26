@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -137,6 +139,28 @@ public class BrowserUtils {
 
 	
 	
+	/**
+	 * This method returns javaScript executors that 
+	 * when page load slow it will wait for page to be load. 
+	 * */
+	public static void waitForPageToLoad(long timeOutInSeconds) {
+		
+		ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
+			public Boolean apply(WebDriver driver) {
+				return ((JavascriptExecutor) driver)
+						.executeScript("return document.readyState").equals("complete");
+			}
+		};
+		try {
+			System.out.println("Waiting for page to load...");
+			WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeOutInSeconds);
+			wait.until(expectation);
+		} catch (Throwable error) {
+			System.out.println(
+					"Timeout waiting for Page Load Request to complete after " + timeOutInSeconds + " seconds");
+		}
+	}
+
 	
 	
 	
