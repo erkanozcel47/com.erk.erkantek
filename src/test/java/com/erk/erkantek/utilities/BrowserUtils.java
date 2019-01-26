@@ -71,6 +71,19 @@ public class BrowserUtils {
 		return elementTexts;
 	}
 	
+	/**
+	 * I create a method that return wait for stopping execution, 
+	 * so used thread sleep with try catch method.
+	 * i used {@link InterruptedException} exception.
+	 * */
+	
+	public static void waitFor(int second) {
+		try {
+			Thread.sleep(second*1000);
+		}catch(InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 	
 
 }
