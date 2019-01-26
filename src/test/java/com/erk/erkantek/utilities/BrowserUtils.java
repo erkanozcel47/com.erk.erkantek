@@ -1,5 +1,9 @@
 package com.erk.erkantek.utilities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
@@ -33,6 +37,40 @@ public class BrowserUtils {
 		Actions action = new Actions(Driver.getDriver());
 		action.moveToElement(element).perform();
 	}
+	/*
+	 *  
+	 * return a list of string from a list of element. it is included null elements. 
+	 * @param list
+	 * @return
+	 * */
+	public static List<String> getElementsText(List<WebElement> list){
+		
+		List<String> elemTexts = new ArrayList<>();
+		for (WebElement element : list) {
+			elemTexts.add(element.getText());
+		}
+		
+		return elemTexts;
+	}
+	/*
+	 *  
+	 * return a list of string from a list of element by locator. it is not included null elements. 
+	 * @param list
+	 * @return
+	 * */
+	public static List<String> getElementText(By locator) {
+		List<WebElement> elements= Driver.getDriver().findElements(locator);
+		List<String> elementTexts = new ArrayList<>();
+		
+		for(WebElement elem :elements ) {
+			if(!elem.getText().isEmpty()) {
+				elementTexts.add(elem.getText());
+			}
+			
+		}
+		return elementTexts;
+	}
+	
 	
 
 }
