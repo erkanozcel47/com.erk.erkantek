@@ -10,11 +10,11 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		
+		tags="@temp",
 		features="src/test/resources/FeatureFile",
 		glue="com/erk/erkantek/step_definitions"
 		
-//	, dryRun=true
+// , dryRun=true
 		)
 public class CukesRunners {
 

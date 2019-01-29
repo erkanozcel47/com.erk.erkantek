@@ -15,7 +15,7 @@ public class Hooks {
 	@Before
 	public void setUp() {
 		Driver.getDriver().get(ConfigurationReader.getProperty("urltoolsQA"));
-		Driver.getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Driver.getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		
 	}
 	
